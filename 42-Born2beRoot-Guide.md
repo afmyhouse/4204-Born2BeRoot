@@ -298,15 +298,42 @@ Don’t log  as root ( with the purpose of future generic use of this document a
 
 - [ ] **Check UFW service status.**
 
-| `me-user@me-user42:~# sudo ufw status Status: active To                     	Action  	From --                     	------  	---- 4242                   	ALLOW   	Anywhere             	  80                     	ALLOW   	Anywhere             	  21                     	ALLOW   	Anywhere             	  4242 (v6)              	ALLOW   	Anywhere (v6)        	  80 (v6)                	ALLOW   	Anywhere (v6)        	  21 (v6)                	ALLOW   	Anywhere (v6)`   	 |
-| :---- |
+```bash
+me-user@me-user42:~# sudo ufw status Status: active To
+   	Action  	From --                     	------  	---- 4242
+   	ALLOW   	Anywhere             	  80
+   	ALLOW   	Anywhere             	  21
+   	ALLOW   	Anywhere             	  4242 (v6)
+   	ALLOW   	Anywhere (v6)        	  80 (v6)
+   	ALLOW   	Anywhere (v6)        	  21 (v6)
+   	ALLOW   	Anywhere (v6)`   	 |
+
 
 ## SSH
 
 - [ ] **Check SSH service is started.**
 
-| `me-user@me-user42:~# sudo systemctl status ssh ● ssh.service - OpenBSD Secure Shell server        Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)        Active: active (running) since Thu 2023-05-04 14:27:07 WEST; 3h 5min ago        Docs:   man:sshd(8)                man:sshd_config(5)        Process: 569 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)        Main PID: 616 (sshd)        Tasks: 1 (limit: 1125)        Memory: 6.8M        CPU: 100ms        CGroup: /system.slice/ssh.service          	└─616 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups May 04 14:27:07 me-user42 systemd[1]: Starting OpenBSD Secure Shell server... May 04 14:27:07 me-user42 sshd[616]: Server listening on 0.0.0.0 port 4242. May 04 14:27:07 me-user42 sshd[616]: Server listening on :: port 4242. May 04 14:27:07 me-user42 systemd[1]: Started OpenBSD Secure Shell server. May 04 14:28:11 me-user42 sshd[748]: Accepted password for me-user from 10.11.10.14 port 49564 ssh2 May 04 14:28:11 me-user42 sshd[748]: pam_unix(sshd:session): session opened for user me-user(uid=1000) by (uid=0)` |
-| :---- |
+```bash
+me-user@me-user42:~# sudo systemctl status ssh
+ssh.service - OpenBSD Secure Shell server
+Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+Active: active (running) since Thu 2023-05-04 14:27:07 WEST; 3h 5min ago
+Docs:   man:sshd(8)
+man:sshd_config(5)
+Process: 569 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+Main PID: 616 (sshd)
+Tasks: 1 (limit: 1125)
+Memory: 6.8M
+CPU: 100ms
+CGroup: /system.slice/ssh.service
+└─616 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups May 04 14:27:07
+me-user42 systemd[1]: Starting OpenBSD Secure Shell server... May 04 14:27:07
+me-user42 sshd[616]: Server listening on 0.0.0.0 port 4242. May 04 14:27:07
+me-user42 sshd[616]: Server listening on :: port 4242. May 04 14:27:07
+me-user42 systemd[1]: Started OpenBSD Secure Shell server. May 04 14:28:11
+me-user42 sshd[748]: Accepted password for me-user from 10.11.10.14 port 49564 ssh2 May 04 14:28:11
+me-user42 sshd[748]: pam_unix(sshd:session): session opened for user me-user(uid=1000) by (uid=0)
+```
 
 ## Hostname
 
@@ -333,8 +360,9 @@ Don’t log  as root ( with the purpose of future generic use of this document a
 
 - [ ] How to view the partitions for the VM :
 
-| `me-user@me-user42:~# lsblk NAME                	MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT sda                   	8:0	  0 30.8G  0  disk   ├─sda1                	8:1	  0  500M  0  part  /boot ├─sda2                	8:2	  0    1K  0  part   └─sda5                	8:5	  0 30.3G  0  part     └─sda5_crypt      	254:0	  0 30.3G  0  crypt 	├─LVMGroup-root 	254:1	  0   10G  0  lvm   / 	├─LVMGroup-swap 	254:2	  0  2.3G  0  lvm   [SWAP] 	├─LVMGroup-home 	254:3	  0    5G  0  lvm   /home 	├─LVMGroup-var  	254:4	  0    3G  0  lvm   /var 	├─LVMGroup-srv  	254:5	  0    3G  0  lvm   /srv 	├─LVMGroup-tmp  	254:6	  0    3G  0  lvm   /tmp 	└─LVMGroup-var--log 254:7	  0    4G  0  lvm   /var/log sr0                  	11:0	  1 1024M  0  rom` |
-| :---- |
+```bash`me-user@me-user42:~# lsblk 
+NAME                	MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT sda                   	8:0	  0 30.8G  0  disk   ├─sda1                	8:1	  0  500M  0  part  /boot ├─sda2                	8:2	  0    1K  0  part   └─sda5                	8:5	  0 30.3G  0  part     └─sda5_crypt      	254:0	  0 30.3G  0  crypt 	├─LVMGroup-root 	254:1	  0   10G  0  lvm   / 	├─LVMGroup-swap 	254:2	  0  2.3G  0  lvm   [SWAP] 	├─LVMGroup-home 	254:3	  0    5G  0  lvm   /home 	├─LVMGroup-var  	254:4	  0    3G  0  lvm   /var 	├─LVMGroup-srv  	254:5	  0    3G  0  lvm   /srv 	├─LVMGroup-tmp  	254:6	  0    3G  0  lvm   /tmp 	└─LVMGroup-var--log 254:7	  0    4G  0  lvm   /var/log sr0                  	11:0	  1 1024M  0  rom` |
+```
 
 - [ ] Compare the output with the example given in the subject (if there are bonuses, refer to the bonus example).
 
